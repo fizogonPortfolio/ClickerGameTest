@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Clicker Game</title>
+
+        <style>
+            .PointsDisplay {
+                text-align: center;
+                font-size: 50px;
+                color: #333;
+                margin-top: 2%;
+            }
+            .PointsButton {
+                display: block;
+                margin: 20px auto;
+                padding: 10px 20px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        </style>
+
+        <script>
+            let points = 3;
+
+            function PointGain() {
+                return 2
+            }
+
+            function updatePoints() {
+                document.querySelector(".PointsDisplay").textContent = "You Have " + points + " Points";
+            }
+            function UpdatePointButton() {
+                document.querySelector(".PointsButton").textContent = "+" + PointGain() + " Points" 
+            }
+
+            function addPoints() {
+                points += PointGain();
+            }
+
+            function UpdateUI() {
+                setInterval(() => {
+                    updatePoints();
+                    UpdatePointButton();
+                }, 50);
+            }
+            UpdateUI();
+            document.addEventListener("DOMContentLoaded", updatePoints);
+        </script>
+    </head>
+
+    <body>
+        <h1 class="PointsDisplay">You Have 0 Points</h1>
+        <button class="PointsButton" onclick="addPoints(1)">+1 Points</button>
+    </body>
+</html>
