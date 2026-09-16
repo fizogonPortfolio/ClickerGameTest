@@ -3,21 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <title>Clicker Game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">     
 
         <style>
-            .PointsDisplay {
+            *{
+                font-family: "Fredoka", sans-serif;
                 text-align: center;
+
+                -webkit-text-stroke: 1px black;
+                text-shadow: 2px 2px 4px black;
+                color: #585656;
+            }
+            button {
+                display: block;
+                border-radius: 20px;
+                cursor: pointer;
+                margin: 20px auto;
+                box-shadow: 2px 2px 4px black;
+                border: black 3px solid;
+            }
+
+            .PointsDisplay {
                 font-size: 50px;
-                color: #333;
                 margin-top: 2%;
             }
             .PointsButton {
-                display: block;
-                margin: 20px auto;
-                padding: 10px 40px;
-                font-size: 20px;
-                cursor: pointer;
-                border-radius: 15px;
+                width: 200px;
+                height: 60px;
+                font-size: 35px;
             }
         </style>
 
