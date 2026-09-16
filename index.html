@@ -21,33 +21,31 @@
         </style>
 
         <script>
+            // Variables
             let points = 3;
 
-            function PointGain() {
-                return 2
-            }
+            // Helper Functions
+            function CreateLoop(ms, ...args) {setInterval(() => {args.forEach((func) => {func();})}, ms)}
+            function PointGain() {return 2}
+            function SetUpUI(Class, Text) {document.querySelector(Class).textContent = Text;}
 
-            function SetUpUI(Class, Text) {
-                document.querySelector(Class).textContent = Text;
-            }
+            // UI Functions
 
             function updatePoints() {SetUpUI(".PointsDisplay", "You Have " + points + " Points")};
             function UpdatePointButton() {SetUpUI(".PointsButton", "+" + PointGain() + " Points")}
+
+            // Game Functions
             function addPoints() {points += PointGain();}
 
-            function UpdateUI() {
-                setInterval(() => {
-                    updatePoints();
-                    UpdatePointButton();
-                }, 50);
-            }
+            // Initial UI Updates
+            function UpdateUI() {CreateLoop(50, updatePoints, UpdatePointButton);}
             UpdateUI();
             document.addEventListener("DOMContentLoaded", updatePoints);
         </script>
     </head>
 
     <body>
-        <h1 class="PointsDisplay"></h1>
-        <button class="PointsButton" onclick="addPoints()"></button>
+        <h1 class="PointsDisplay">You Have 0 Points</h1>
+        <button class="PointsButton" onclick="addPoints()">+1 Points</button>
     </body>
 </html>
