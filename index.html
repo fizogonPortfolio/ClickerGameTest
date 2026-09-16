@@ -27,16 +27,13 @@
                 return 2
             }
 
-            function updatePoints() {
-                document.querySelector(".PointsDisplay").textContent = "You Have " + points + " Points";
-            }
-            function UpdatePointButton() {
-                document.querySelector(".PointsButton").textContent = "+" + PointGain() + " Points" 
+            function SetUpUI(Class, Text) {
+                document.querySelector(Class).textContent = Text;
             }
 
-            function addPoints() {
-                points += PointGain();
-            }
+            function updatePoints() {SetUpUI(".PointsDisplay", "You Have " + points + " Points")};
+            function UpdatePointButton() {SetUpUI(".PointsButton", "+" + PointGain() + " Points")}
+            function addPoints() {points += PointGain();}
 
             function UpdateUI() {
                 setInterval(() => {
@@ -50,7 +47,7 @@
     </head>
 
     <body>
-        <h1 class="PointsDisplay">You Have 0 Points</h1>
-        <button class="PointsButton" onclick="addPoints(1)">+1 Points</button>
+        <h1 class="PointsDisplay"></h1>
+        <button class="PointsButton" onclick="addPoints()"></button>
     </body>
 </html>
