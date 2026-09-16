@@ -29,6 +29,7 @@
                 margin: 20px auto;
                 box-shadow: 2px 2px 4px black;
                 border: black 3px solid;
+                transition: transform 0.2s ease;
             }
 
             .PointsDisplay {
@@ -44,20 +45,21 @@
 
             /* Animations */
             Button {transition: transform 0.2s ease;}
-            Button:hover {transform: scale(1.1);else {transform: scale(1);}}
+            Button:hover {transform: scale(1.1);}
             Button:active {transform: scale(1.05);}
-
-            
 
         </style>
 
         <script>
-            let points = 3;
-
+            let points = CreateData("points", 3);
+            
             // HELPER FUNCTIONS
-
+            function CreateData(Name, InitialValue) {if (localStorage.getItem(Name) === null) {localStorage.setItem(Name, InitialValue);} return Number(localStorage.getItem(Name));}
             function CreateLoop(ms, ...args) {setInterval(() => {args.forEach((func) => {func();});}, ms);}
             function SetUpUI(Class, Text) {document.querySelector(Class).textContent = Text;}
+
+            // SAVING
+            function SaveData() {localStorage.setItem("points", points);}
 
             // GAINS
             function PointGain() {return 2;}
@@ -70,7 +72,7 @@
             };
 
             // ADD FUNCTIONS
-            function addPoints() {points += PointGain();}
+            function addPoints() {points += PointGain(); SaveData();}
 
             // INITIAL
 
@@ -83,3 +85,4 @@
         <button class="PointsButton" onclick="addPoints()">+1 Points</button>
     </body>
 </html>
+
