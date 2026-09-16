@@ -64,7 +64,7 @@
     <body>
         <h1 class="PointsDisplay">You Have 0 Points</h1>
 
-        <button class="PointsButton" onclick="addPoints()">+2 Points</button>
+        <button class="PointsButton" onclick="addPoints()">+1 Points</button>
 
         <h2><u>Upgrades</u></h2>
 
@@ -208,11 +208,12 @@
                 for (const Name in Upgrades) {
                     let Upgrade = Upgrades[Name];
                     let Level = Data[Name];
+                    let Bought = Level - 1;
 
                     if (Upgrade.Type === "+") {
-                        Boost += Level * Upgrade.Gain;
+                        Boost += Bought * Upgrade.Gain;
                     } else if (Upgrade.Type === "x") {
-                        Boost *= Upgrade.Gain ** Level;
+                        Boost *= Upgrade.Gain ** Bought;
                     }
                 }
 
@@ -223,22 +224,19 @@
                 let Upgrade = Upgrades[Name];
                 let Level = Data[Name];
 
-                return Upgrade.Cost * ((Upgrade.CostMultiplier ** Level) ** Upgrade.Scale);
+                return Upgrade.Cost * (Upgrade.CostMultiplier ** ((Level - 1) ** Upgrade.Scale));
             }
 
             function UpgradeGain(Name) {
                 let Upgrade = Upgrades[Name];
                 let Level = Data[Name];
-
-                if (Level === 1) {
-                    return Upgrade.Gain;
-                }
+                let Bought = Level - 1;
 
                 if (Upgrade.Type === "+") {
-                    return Level * Upgrade.Gain;
+                    return Bought * Upgrade.Gain;
                 }
 
-                return Upgrade.Gain ** Level;
+                return Upgrade.Gain ** Bought;
             }
 
 
