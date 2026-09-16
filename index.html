@@ -26,21 +26,22 @@
 
             // Helper Functions
             function CreateLoop(ms, ...args) {setInterval(() => {args.forEach((func) => {func();})}, ms)}
-            function PointGain() {return 2}
             function SetUpUI(Class, Text) {document.querySelector(Class).textContent = Text;}
+
+            // Gains
+            function PointGain() {return 2}
 
             // UI Functions
 
-            function updatePoints() {SetUpUI(".PointsDisplay", "You Have " + points + " Points")};
-            function UpdatePointButton() {SetUpUI(".PointsButton", "+" + PointGain() + " Points")}
-
+            const DisplayFunctions = {
+                updatePoints: function() {SetUpUI(".PointsDisplay", "You Have " + points + " Points")},
+                UpdatePointButton: function() {SetUpUI(".PointsButton", "+" + PointGain() + " Points")}
+            }
             // Game Functions
             function addPoints() {points += PointGain();}
 
-            // Initial UI Updates
-            function UpdateUI() {CreateLoop(50, updatePoints, UpdatePointButton);}
-            UpdateUI();
-            document.addEventListener("DOMContentLoaded", updatePoints);
+            // Initial Updates
+            CreateLoop(50, function() {for (const func in DisplayFunctions) {DisplayFunctions[func]();}});
         </script>
     </head>
 
